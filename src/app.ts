@@ -4,6 +4,7 @@ import 'dotenv/config';
 import express from 'express';
 import helmet from 'helmet';
 import logger from 'morgan';
+import { connectToDatabase } from './database/db';
 
 const PORT = process.env.PORT ?? 3000;
 
@@ -30,6 +31,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static('../public'));
 app.use(compression());
+
+/* Conectando com o banco de dados */
+connectToDatabase();
 
 /* Iniciando o servidor */
 app.listen(PORT, () => {
