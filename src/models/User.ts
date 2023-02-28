@@ -1,6 +1,6 @@
 import { model, Schema, Types } from 'mongoose';
 
-export type UserType = {
+export interface IUser {
   firstName: string;
   lastName: string;
   username: string;
@@ -9,9 +9,9 @@ export type UserType = {
   hasMembership: boolean;
   fullName: string;
   url: string;
-};
+}
 
-const UserSchema = new Schema<UserType>({
+const UserSchema = new Schema<IUser>({
   firstName: {
     type: String,
     required: true,
@@ -40,15 +40,13 @@ const UserSchema = new Schema<UserType>({
 });
 
 UserSchema.virtual('fullName').get(function (
-  this: UserType & { _id: Types.ObjectId }
+  this: IUser & { _id: Types.ObjectId }
 ) {
   return this.firstName + ' ' + this.lastName;
 });
 
-UserSchema.virtual('url').get(function (
-  this: UserType & { _id: Types.ObjectId }
-) {
+UserSchema.virtual('url').get(function (this: IUser & { _id: Types.ObjectId }) {
   return '/users/' + this._id;
 });
 
-export default model<UserType>('User', UserSchema);
+export default model<IUser>('User', UserSchema);
