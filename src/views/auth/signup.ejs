@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#294d4a" />
+
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/auth.css" />
+
+    <title>Cadastre-se - PostHere!</title>
+  </head>
+  <body>
+    <%- include('../layout/header') %>
+
+    <main>
+      <div class="container">
+        <div class="auth-card">
+          <img src="/img/signup-image.jpg" alt="" />
+          <div class="form-area">
+            <h2>Cadastre-se e faça sua voz ser ouvida</h2>
+            <form action="" method="post">
+              <div class="form-group">
+                <label for="firstName">Nome:</label>
+                <input
+                  type="text"
+                  name="firstName"
+                  id="firstName"
+                  minlength="2"
+                  maxlength="30"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="lastName">Sobrenome:</label>
+                <input
+                  type="text"
+                  name="lastName"
+                  id="lastName"
+                  minlength="2"
+                  maxlength="30"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="username">Username:</label>
+                <input
+                  type="text"
+                  name="username"
+                  id="username"
+                  minlength="5"
+                  maxlength="30"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="password">Senha:</label>
+                <input
+                  type="password"
+                  name="password"
+                  id="password"
+                  minlength="8"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="password2">Confirmação de senha:</label>
+                <input
+                  type="password"
+                  name="password2"
+                  id="password2"
+                  minlength="8"
+                  required
+                />
+              </div>
+              <button type="submit">Criar conta</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <%- include('../layout/footer') %>
+  </body>
+</html>

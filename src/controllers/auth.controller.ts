@@ -15,7 +15,7 @@ export const get_signup = async (
   res: Response,
   next: NextFunction
 ) => {
-  return res.send(`SIGNUP PAGE`);
+  return res.render('auth/signup');
 };
 
 /** Faz logout do usuário */
