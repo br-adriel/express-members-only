@@ -1,0 +1,46 @@
+main .container {
+  padding: 0 16px;
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+}
+
+.new-post {
+  width: 40%;
+  background-color: var(--color-card);
+  padding: 16px;
+  border-radius: 8px;
+  position: sticky;
+  top: calc(56px + 16px);
+  flex-shrink: 0;
+}
+
+.new-post h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.feed {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.post {
+  padding: 16px;
+  background-color: var(--color-card);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.post h2 {
+  font-size: 1.3rem;
+}
+
+.post .author {
+  font-size: 0.9rem;
+}

@@ -8,13 +8,17 @@ import { connectToDatabase } from './database/db';
 import authRoutes from './routes/auth.routes';
 import postRoutes from './routes/post.routes';
 import userRoutes from './routes/user.routes';
+import path from 'path';
 
 const PORT = process.env.PORT ?? 3000;
 
 const app = express();
 
+/* Conectando com o banco de dados */
+connectToDatabase();
+
 /* Definindo template engine */
-app.set('views', './views');
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 /* Middlewares */
@@ -32,16 +36,13 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static('../public'));
+app.use(express.static(path.join(__dirname, '../public')));
 app.use(compression());
 
 /* Rotas */
 app.use('/', authRoutes);
 app.use('/posts', postRoutes);
 app.use('/users', userRoutes);
-
-/* Conectando com o banco de dados */
-connectToDatabase();
 
 /* Iniciando o servidor */
 app.listen(PORT, () => {

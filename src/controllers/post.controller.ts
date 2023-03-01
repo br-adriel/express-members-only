@@ -6,7 +6,7 @@ export const get_posts = async (
   res: Response,
   next: NextFunction
 ) => {
-  return res.send(`SHOW ALL POSTS`);
+  return res.render('posts/all_posts');
 };
 
 /** Cria um novo post */
