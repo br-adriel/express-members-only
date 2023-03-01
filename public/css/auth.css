@@ -1,0 +1,26 @@
+.auth-card {
+  width: 100%;
+  display: flex;
+  border-radius: 8px;
+  background-color: var(--color-card);
+  flex-grow: 1;
+  align-items: center;
+}
+
+.auth-card img {
+  border-radius: 8px 0 0 8px;
+  width: 60%;
+  align-self: stretch;
+  object-fit: cover;
+}
+
+.auth-card .form-area {
+  padding: 32px;
+  width: 100%;
+}
+
+.auth-card .form-area h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 32px;
+}

@@ -6,7 +6,7 @@ export const get_login = async (
   res: Response,
   next: NextFunction
 ) => {
-  return res.send(`LOGIN PAGE`);
+  return res.render('auth/login');
 };
 
 /** Renderiza página de cadastro */
