@@ -1,7 +1,9 @@
 import compression from 'compression';
+import MongoStore from 'connect-mongo';
 import cookieParser from 'cookie-parser';
 import 'dotenv/config';
 import express from 'express';
+import session from 'express-session';
 import helmet from 'helmet';
 import logger from 'morgan';
 import path from 'path';
@@ -38,6 +40,23 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(compression());
+
+/* Session */
+const sessionStore = new MongoStore({
+  collectionName: 'sessions',
+  mongoUrl: process.env.DB_URL,
+});
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET || 'SET A REAL SECRET',
+    resave: false,
+    saveUninitialized: false,
+    store: sessionStore,
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 12, // equals 12 hours
+    },
+  })
+);
 
 /* Rotas */
 app.use('/', authRoutes);
