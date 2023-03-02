@@ -4,11 +4,11 @@ import 'dotenv/config';
 import express from 'express';
 import helmet from 'helmet';
 import logger from 'morgan';
-import { connectToDatabase } from './database/db';
+import path from 'path';
+import { connectToDatabase } from './database';
 import authRoutes from './routes/auth.routes';
 import postRoutes from './routes/post.routes';
 import userRoutes from './routes/user.routes';
-import path from 'path';
 
 const PORT = process.env.PORT ?? 3000;
 
