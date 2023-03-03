@@ -220,10 +220,12 @@ footer .links {
   color: var(--color-error);
   font-weight: 700;
   font-size: 3rem;
+  text-align: center;
 }
 
 .error-page p {
   font-size: 1.5rem;
+  text-align: center;
 }
 
 .card {
