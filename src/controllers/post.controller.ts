@@ -10,7 +10,9 @@ export const get_posts = async (
   next: NextFunction
 ) => {
   try {
-    const posts = await PostModel.find({}).populate('author');
+    const posts = await PostModel.find({})
+      .sort({ createdAt: -1 })
+      .populate('author');
     return res.render('posts/all_posts', { posts });
   } catch (err) {
     return next(err);
@@ -38,7 +40,9 @@ export const post_new_post = [
     try {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
-        const posts = await Post.find({}).populate('author');
+        const posts = await Post.find({})
+          .sort({ createdAt: -1 })
+          .populate('author');
         return res.render('posts/all_posts', {
           posts,
           formData: req.body,
