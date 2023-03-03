@@ -97,18 +97,18 @@ export const post_signup = [
         });
 
       if (!errors.isEmpty() || user) {
-        console.log(errorsArray);
         return res.render('auth/signup', {
           errors: errorsArray,
           formData: req.body,
         });
       }
 
+      const hashedPassword = await hash(req.body.password, 10)
       const newUser = new User({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         username: req.body.username,
-        password: req.body.password,
+        password: hashedPassword,
       });
       await newUser.save();
 
