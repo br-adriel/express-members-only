@@ -1,0 +1,12 @@
+<div class="post">
+  <h2><%= post.title %></h2>
+  <p><%= post.content %></p>
+  <% if (user.hasMembership || user.username === post.author.username) { %> 
+    <p class="author">
+      Autor:
+      <a href="/users/<%=post.author.username%>">
+        <%= post.author.fullName %>
+      </a>
+    </p>
+  <% } %>
+</div>
