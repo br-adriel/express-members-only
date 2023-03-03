@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
+import User from '../models/User';
 
 /** Exibe perfil do usuário */
 export const get_user_profile = async (
@@ -6,7 +7,22 @@ export const get_user_profile = async (
   res: Response,
   next: NextFunction
 ) => {
-  return res.send(`USER "${req.params.username}" PROFILE`);
+  try {
+    const userProfile = await User.findOne({ username: req.params.username });
+    if (userProfile) {
+      return res.render('users/profile', {
+        userProfile,
+      });
+    }
+    return res.render('errorPage', {
+      error: {
+        status: 404,
+        message: 'Usuário não encontrado',
+      },
+    });
+  } catch (error) {
+    return next(error);
+  }
 };
 
 /** Exibe formulário de edição do usuário */
