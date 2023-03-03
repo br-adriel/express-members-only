@@ -17,10 +17,15 @@
 .auth-card .form-area {
   padding: 32px;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .auth-card .form-area h2 {
   font-size: 1.5rem;
   font-weight: 700;
-  margin-bottom: 32px;
+}
+
+.auth-card .form-area form {
 }

@@ -1,6 +1,8 @@
+import { hash } from 'bcrypt';
 import { NextFunction, Request, Response } from 'express';
 import { body } from 'express-validator';
 import { validationResult } from 'express-validator/src/validation-result';
+import passport from 'passport';
 import User from '../models/User';
 
 /** Renderiza página de login */
@@ -9,7 +11,9 @@ export const get_login = async (
   res: Response,
   next: NextFunction
 ) => {
-  return res.render('auth/login');
+  const messages = req.session.messages || [];
+  delete req.session.messages;
+  return res.render('auth/login', { messages });
 };
 
 /** Renderiza página de cadastro */
@@ -31,13 +35,11 @@ export const get_logout = async (
 };
 
 /** Faz login do usuário */
-export const post_login = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  return res.send(`USER LOGGED IN`);
-};
+export const post_login = passport.authenticate('local', {
+  successRedirect: '/posts',
+  failureRedirect: '/login',
+  failureMessage: 'Username ou senha incorretos',
+});
 
 /** Cria novo usuário */
 export const post_signup = [

@@ -14,6 +14,7 @@
   --color-text-alt: #fff;
   --color-error: #b71540;
   --color-card: #fff;
+  --color-info: #40739e;
 }
 
 * {
@@ -99,7 +100,6 @@ header nav a:hover {
 form {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
   gap: 8px;
 }
 
@@ -157,6 +157,11 @@ button:hover,
   background-color: var(--color-primary-alt);
 }
 
+form button[type='submit'],
+form input[type='submit'] {
+  align-self: flex-end;
+}
+
 footer {
   padding: 16px;
   background-color: var(--color-primary);
@@ -188,10 +193,17 @@ footer .links {
   font-size: 1.2rem;
 }
 
-.field-error {
-  background-color: var(--color-error);
+.field-message {
   font-size: 0.8rem;
   color: var(--color-text-alt);
   border-radius: 8px;
   padding: 8px;
+}
+
+.field-error {
+  background-color: var(--color-error);
+}
+
+.field-info {
+  background-color: var(--color-info);
 }

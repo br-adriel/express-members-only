@@ -32,7 +32,7 @@
                   minlength="2"
                   maxlength="30"
                   required
-                  value="<%= formData.firstName || null%>"
+                  value="<%= locals.formData ? formData.firstName : null%>"
                 />
               </div>
               <div class="form-group">
@@ -45,7 +45,7 @@
                   minlength="2"
                   maxlength="30"
                   required
-                  value="<%= formData.lastName || null%>"
+                  value="<%= locals.formData ? formData.lastName : null%>"
                 />
               </div>
               <div class="form-group">
@@ -58,7 +58,7 @@
                   minlength="5"
                   maxlength="30"
                   required
-                  value="<%= formData.username || null%>"
+                  value="<%= locals.formData ? formData.username : null%>"
                 />
               </div>
               <div class="form-group">
