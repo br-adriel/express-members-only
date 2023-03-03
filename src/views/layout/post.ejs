@@ -1,12 +1,24 @@
 <div class="post">
-  <h2><%= post.title %></h2>
-  <p><%= post.content %></p>
-  <% if (user.hasMembership || user.username === post.author.username) { %> 
-    <p class="author">
-      Autor:
-      <a href="/users/<%=post.author.username%>">
+  <div class="post-content">
+    <h2><%= post.title %></h2>
+    <% if (post.content) { %>
+      <p><%= post.content %></p>
+    <% } %>
+  </div>
+  <div class="post-bottom">
+    <% if (user.hasMembership || user.username === post.author.username) { %>
+      <a href="/users/<%=post.author.username%>" class="author">
+        <i class="bi bi-person-circle"></i>
         <%= post.author.fullName %>
       </a>
-    </p>
-  <% } %>
+      
+      <% if (user.username === post.author.username) { %>
+        <div class="post-actions">
+          <a href="/posts/<%= post.id %>/remove" class="btn" aria-label="Remover post">
+            <i class="bi bi-trash3"></i>
+          </a>
+        </div>
+      <% } %>
+    <% } %>
+  </div>
 </div>
