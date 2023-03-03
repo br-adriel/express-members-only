@@ -2,7 +2,7 @@ import compression from 'compression';
 import MongoStore from 'connect-mongo';
 import cookieParser from 'cookie-parser';
 import 'dotenv/config';
-import express from 'express';
+import express, { NextFunction, Request, Response } from 'express';
 import session from 'express-session';
 import helmet from 'helmet';
 import logger from 'morgan';
@@ -17,6 +17,7 @@ import {
   localStrategy,
   serialize,
 } from './config/passportjs.config';
+import { userAvailableInTemplate } from './middlewares/auth.middleware';
 
 const PORT = process.env.PORT ?? 3000;
 
@@ -71,11 +72,16 @@ passport.deserializeUser(deserialize);
 
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(userAvailableInTemplate);
 
 /* Rotas */
 app.use('/', authRoutes);
 app.use('/posts', postRoutes);
 app.use('/users', userRoutes);
+app.get('/', (req: Request, res: Response, next: NextFunction) => {
+  if (req.user) return res.redirect('/posts');
+  return res.redirect('/login');
+});
 
 /* Iniciando o servidor */
 app.listen(PORT, () => {
