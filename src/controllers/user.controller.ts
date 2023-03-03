@@ -48,20 +48,43 @@ export const get_user_profile_edit = (
   });
 };
 
-/** Dá acesso VIP ao usuário */
+/** Renderiza formulário para solicitar acesso VIP */
 export const get_grant_user_VIP_acess = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
-  if (req.user) {
-    await User.updateOne(
-      { username: req.user.username },
-      { hasMembership: true }
-    );
-  }
-  return res.redirect('/');
+  return res.render('users/getVIP');
 };
+
+/** Salva as modificações feitas no perfil do usuário */
+export const post_grant_user_VIP_access = [
+  body('accessCode')
+    .isLength({ min: 8 })
+    .custom((value) => {
+      return value === process.env.VIP_CODE;
+    })
+    .withMessage('Código incorreto'),
+
+  async (req: Request, res: Response, next: NextFunction) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.render('users/getVIP', {
+        errors: errors.array(),
+      });
+    }
+
+    try {
+      await User.updateOne(
+        { username: req.user?.username },
+        { hasMembership: true }
+      );
+      return res.redirect('/');
+    } catch (error) {
+      next(error);
+    }
+  },
+];
 
 /** Salva as modificações feitas no perfil do usuário */
 export const post_user_profile_edit = [

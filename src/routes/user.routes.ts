@@ -9,6 +9,11 @@ userRoutes.get(
   userMustBeAuthenticated,
   userController.get_grant_user_VIP_acess
 );
+userRoutes.post(
+  '/vip',
+  userMustBeAuthenticated,
+  userController.post_grant_user_VIP_access
+);
 
 userRoutes.get('/:username', userController.get_user_profile);
 
