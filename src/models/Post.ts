@@ -1,4 +1,4 @@
-import { Schema, Types } from 'mongoose';
+import { model, Schema, Types } from 'mongoose';
 
 export interface IPost {
   title: string;
@@ -23,3 +23,5 @@ const PostSchema = new Schema<IPost>(
 PostSchema.virtual('url').get(function (this: IPost & { _id: Types.ObjectId }) {
   return '/posts/' + this._id;
 });
+
+export default model<IPost>('Post', PostSchema);

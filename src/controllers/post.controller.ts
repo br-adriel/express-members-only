@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
+import PostModel from '../models/Post';
 
 /** Renderiza todos os posts */
 export const get_posts = async (
@@ -6,7 +7,12 @@ export const get_posts = async (
   res: Response,
   next: NextFunction
 ) => {
-  return res.render('posts/all_posts');
+  try {
+    const posts = await PostModel.find({}).populate('author');
+    return res.render('posts/all_posts', { posts });
+  } catch (err) {
+    return next(err);
+  }
 };
 
 /** Cria um novo post */

@@ -44,105 +44,19 @@
           </form>
         </div>
         <div class="feed">
-          <div class="post">
-            <h2>Titulo</h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo
-              neque sit, alias tenetur placeat ratione quasi voluptas mollitia
-              soluta! Modi?
-            </p>
-            <p class="author">Autor: Fulano Silva</p>
-          </div>
-          <div class="post">
-            <h2>Titulo</h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo
-              neque sit, alias tenetur placeat ratione quasi voluptas mollitia
-              soluta! Modi?
-            </p>
-            <p class="author">Autor: Fulano Silva</p>
-          </div>
-          <div class="post">
-            <h2>Titulo</h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo
-              neque sit, alias tenetur placeat ratione quasi voluptas mollitia
-              soluta! Modi?
-            </p>
-            <p class="author">Autor: Fulano Silva</p>
-          </div>
-          <div class="post">
-            <h2>Titulo</h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo
-              neque sit, alias tenetur placeat ratione quasi voluptas mollitia
-              soluta! Modi?
-            </p>
-            <p class="author">Autor: Fulano Silva</p>
-          </div>
-          <div class="post">
-            <h2>Titulo</h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo
-              neque sit, alias tenetur placeat ratione quasi voluptas mollitia
-              soluta! Modi?
-            </p>
-            <p class="author">Autor: Fulano Silva</p>
-          </div>
-          <div class="post">
-            <h2>Titulo</h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo
-              neque sit, alias tenetur placeat ratione quasi voluptas mollitia
-              soluta! Modi?
-            </p>
-            <p class="author">Autor: Fulano Silva</p>
-          </div>
-          <div class="post">
-            <h2>Titulo</h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo
-              neque sit, alias tenetur placeat ratione quasi voluptas mollitia
-              soluta! Modi?
-            </p>
-            <p class="author">Autor: Fulano Silva</p>
-          </div>
-          <div class="post">
-            <h2>Titulo</h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo
-              neque sit, alias tenetur placeat ratione quasi voluptas mollitia
-              soluta! Modi?
-            </p>
-            <p class="author">Autor: Fulano Silva</p>
-          </div>
-          <div class="post">
-            <h2>Titulo</h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo
-              neque sit, alias tenetur placeat ratione quasi voluptas mollitia
-              soluta! Modi?
-            </p>
-            <p class="author">Autor: Fulano Silva</p>
-          </div>
-          <div class="post">
-            <h2>Titulo</h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo
-              neque sit, alias tenetur placeat ratione quasi voluptas mollitia
-              soluta! Modi?
-            </p>
-            <p class="author">Autor: Fulano Silva</p>
-          </div>
-          <div class="post">
-            <h2>Titulo</h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo
-              neque sit, alias tenetur placeat ratione quasi voluptas mollitia
-              soluta! Modi?
-            </p>
-            <p class="author">Autor: Fulano Silva</p>
-          </div>
+          <% if (posts.length) { %> 
+            <% posts.forEach(post => { %> 
+              <div class="post">
+                <h2><%= post.title %></h2>
+                <p><%= post.content %></p>
+                <% if (user.hasMembership) { %> 
+                  <p class="author">Autor: <%= post.author.fullName %></p>
+                <% } %>
+              </div>
+            <% }) %>
+          <% } else { %>
+            <h3 class="no-posts">Nenhum post encontrado</h3>
+          <% } %>
         </div>
       </div>
     </main>
