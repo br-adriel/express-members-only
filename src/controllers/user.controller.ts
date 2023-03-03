@@ -48,6 +48,21 @@ export const get_user_profile_edit = (
   });
 };
 
+/** Dá acesso VIP ao usuário */
+export const get_grant_user_VIP_acess = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  if (req.user) {
+    await User.updateOne(
+      { username: req.user.username },
+      { hasMembership: true }
+    );
+  }
+  return res.redirect('/');
+};
+
 /** Salva as modificações feitas no perfil do usuário */
 export const post_user_profile_edit = [
   body('firstName')

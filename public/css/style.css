@@ -15,6 +15,7 @@
   --color-error: #b71540;
   --color-card: #fff;
   --color-info: #40739e;
+  --color-vip: #81ecec;
 }
 
 * {
@@ -296,6 +297,24 @@ footer .links {
 .post-actions .btn:hover {
   color: var(--color-text-alt);
   background: var(--color-error);
+}
+
+.vip-banner {
+  display: flex;
+  gap: 16px;
+  padding: 16 8px;
+  align-items: center;
+  background-color: var(--color-vip);
+  border: 2px solid var(--color-text);
+}
+
+.vip-banner i {
+  font-size: 1.7rem;
+}
+
+.vip-banner h2 {
+  font-weight: 700;
+  font-size: 1.3rem;
 }
 
 @media screen and (min-width: 375px) {

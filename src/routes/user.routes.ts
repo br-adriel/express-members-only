@@ -4,6 +4,12 @@ import { userMustBeAuthenticated } from '../middlewares/auth.middleware';
 
 const userRoutes = Router();
 
+userRoutes.get(
+  '/vip',
+  userMustBeAuthenticated,
+  userController.get_grant_user_VIP_acess
+);
+
 userRoutes.get('/:username', userController.get_user_profile);
 
 userRoutes.get(

@@ -48,6 +48,12 @@
           </form>
         </div>
         <div class="feed">
+          <% if (!user.hasMembership) { %> 
+            <div class="card vip-banner">
+              <i class="bi bi-gem"></i>
+              <h2>Se torne VIP para revelar quem é o autor de cada post</h2>
+            </div>
+          <% } %>
           <% if (posts.length) { %> 
             <% posts.forEach(post => { %> 
               <%- include('../layout/post', {post: post, showActions: true}) %>

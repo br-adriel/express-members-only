@@ -7,6 +7,9 @@
     <nav>
       <ul>
         <% if (locals.user) { %>
+          <% if (!user.hasMembership) {%>
+            <li><a href="users/vip">VIP</a></li>
+          <% } %>
           <li><a href="/logout">Sair</a></li>
         <% } else { %>
           <li><a href="/login">Entrar</a></li>
