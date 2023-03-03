@@ -4,11 +4,7 @@ import { userMustBeAuthenticated } from '../middlewares/auth.middleware';
 
 const userRoutes = Router();
 
-userRoutes.get(
-  '/:username',
-  userMustBeAuthenticated,
-  userController.get_user_profile
-);
+userRoutes.get('/:username', userController.get_user_profile);
 
 userRoutes.get(
   '/:username/edit',

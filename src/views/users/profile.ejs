@@ -35,7 +35,7 @@
           </div>
         </div>
         
-        <% if (userProfile.username === user.username) { %>
+        <% if (user && userProfile.username === user.username) { %>
           <a href="/users/<%=user.username%>/edit" class="btn edit-profile">
             <i class="bi bi-pen"></i>
           </a>
