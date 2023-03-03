@@ -24,6 +24,7 @@
             <form action="" method="post">
               <div class="form-group">
                 <label for="firstName">Nome:</label>
+                <%-include('../layout/fieldErrors', {fieldName: 'firstName' })%>
                 <input
                   type="text"
                   name="firstName"
@@ -31,10 +32,12 @@
                   minlength="2"
                   maxlength="30"
                   required
+                  value="<%= formData.firstName || null%>"
                 />
               </div>
               <div class="form-group">
                 <label for="lastName">Sobrenome:</label>
+                <%-include('../layout/fieldErrors', {fieldName: 'lastName' })%>
                 <input
                   type="text"
                   name="lastName"
@@ -42,10 +45,12 @@
                   minlength="2"
                   maxlength="30"
                   required
+                  value="<%= formData.lastName || null%>"
                 />
               </div>
               <div class="form-group">
                 <label for="username">Username:</label>
+                <%-include('../layout/fieldErrors', {fieldName: 'username' })%>
                 <input
                   type="text"
                   name="username"
@@ -53,10 +58,12 @@
                   minlength="5"
                   maxlength="30"
                   required
+                  value="<%= formData.username || null%>"
                 />
               </div>
               <div class="form-group">
                 <label for="password">Senha:</label>
+                <%-include('../layout/fieldErrors', {fieldName: 'password' })%>
                 <input
                   type="password"
                   name="password"
@@ -67,6 +74,7 @@
               </div>
               <div class="form-group">
                 <label for="password2">Confirmação de senha:</label>
+                <%-include('../layout/fieldErrors', {fieldName: 'password2' })%>
                 <input
                   type="password"
                   name="password2"

@@ -187,3 +187,11 @@ footer .links {
   align-items: center;
   font-size: 1.2rem;
 }
+
+.field-error {
+  background-color: var(--color-error);
+  font-size: 0.8rem;
+  color: var(--color-text-alt);
+  border-radius: 8px;
+  padding: 8px;
+}
