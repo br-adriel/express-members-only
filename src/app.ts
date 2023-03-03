@@ -11,6 +11,12 @@ import { connectToDatabase } from './database';
 import authRoutes from './routes/auth.routes';
 import postRoutes from './routes/post.routes';
 import userRoutes from './routes/user.routes';
+import passport from 'passport';
+import {
+  deserialize,
+  localStrategy,
+  serialize,
+} from './config/passportjs.config';
 
 const PORT = process.env.PORT ?? 3000;
 
@@ -57,6 +63,14 @@ app.use(
     },
   })
 );
+
+/* Configura Passport.js */
+passport.use(localStrategy);
+passport.serializeUser(serialize);
+passport.deserializeUser(deserialize);
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 /* Rotas */
 app.use('/', authRoutes);
