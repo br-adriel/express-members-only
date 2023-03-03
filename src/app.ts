@@ -6,18 +6,19 @@ import express, { NextFunction, Request, Response } from 'express';
 import session from 'express-session';
 import helmet from 'helmet';
 import logger from 'morgan';
-import path from 'path';
-import { connectToDatabase } from './database';
-import authRoutes from './routes/auth.routes';
-import postRoutes from './routes/post.routes';
-import userRoutes from './routes/user.routes';
 import passport from 'passport';
+import path from 'path';
 import {
   deserialize,
   localStrategy,
   serialize,
 } from './config/passportjs.config';
+import { connectToDatabase } from './database';
 import { userAvailableInTemplate } from './middlewares/auth.middleware';
+import { ErrorHandlerMiddleware } from './middlewares/error.middleware';
+import authRoutes from './routes/auth.routes';
+import postRoutes from './routes/post.routes';
+import userRoutes from './routes/user.routes';
 
 const PORT = process.env.PORT ?? 3000;
 
@@ -82,6 +83,9 @@ app.get('/', (req: Request, res: Response, next: NextFunction) => {
   if (req.user) return res.redirect('/posts');
   return res.redirect('/login');
 });
+
+/* Lidando com erros */
+app.use(ErrorHandlerMiddleware);
 
 /* Iniciando o servidor */
 app.listen(PORT, () => {
