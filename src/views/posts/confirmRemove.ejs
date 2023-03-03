@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#294d4a" />
+
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/confirmRemove.css" />
+
+    <title>Remover post - PostHere!</title>
+  </head>
+  <body>
+    <%- include('../layout/header') %>
+
+    <main>
+      <div class="container">
+        <div class="content">
+          <%- include('../layout/post', {post: post, showActions: false}) %>
+          <form action="" method="post" class="card">
+            <h2>Tem certeza que deseja remover o post?</h2>
+            <button type="submit">Remover</button>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <%- include('../layout/footer') %>
+  </body>
+</html>

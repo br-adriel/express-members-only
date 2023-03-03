@@ -7,6 +7,12 @@ const postRoutes = Router();
 postRoutes.get('/', userMustBeAuthenticated, postController.get_posts);
 
 postRoutes.post('/new', userMustBeAuthenticated, postController.post_new_post);
+
+postRoutes.get(
+  '/:id/remove',
+  userMustBeAuthenticated,
+  postController.get_remove_post
+);
 postRoutes.post(
   '/:id/remove',
   userMustBeAuthenticated,

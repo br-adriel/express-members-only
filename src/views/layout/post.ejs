@@ -5,20 +5,21 @@
       <p><%= post.content %></p>
     <% } %>
   </div>
-  <div class="post-bottom">
-    <% if (user.hasMembership || user.username === post.author.username) { %>
+
+  <% if (user.hasMembership || user.username === post.author.username) { %>
+    <div class="post-bottom">
       <a href="/users/<%=post.author.username%>" class="author">
         <i class="bi bi-person-circle"></i>
         <%= post.author.fullName %>
       </a>
       
-      <% if (user.username === post.author.username) { %>
+      <% if (user.username === post.author.username && showActions) { %>
         <div class="post-actions">
-          <a href="/posts/<%= post.id %>/remove" class="btn" aria-label="Remover post">
+          <a href="/posts/<%= post.id %>/remove" class="btn" aria-label="Remover post" title="Remover">
             <i class="bi bi-trash3"></i>
           </a>
         </div>
       <% } %>
-    <% } %>
-  </div>
+    </div>
+  <% } %>
 </div>

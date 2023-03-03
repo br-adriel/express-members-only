@@ -207,3 +207,90 @@ footer .links {
 .field-info {
   background-color: var(--color-info);
 }
+
+.error-page {
+  display: flex;
+  flex-direction: column;
+  padding: 25vh 16px;
+  gap: 8px;
+}
+
+.error-page h2 {
+  color: var(--color-error);
+  font-weight: 700;
+  font-size: 3rem;
+}
+
+.error-page p {
+  font-size: 1.5rem;
+}
+
+.card {
+  background-color: var(--color-card);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.post,
+.no-posts {
+  padding: 16px;
+  background-color: var(--color-card);
+  border-radius: 8px;
+}
+
+.post {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.post h2 {
+  font-size: 1.3rem;
+}
+
+.post .author {
+  font-size: 0.9rem;
+}
+
+.post-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.post-content p {
+  padding: 8px;
+  border-radius: 8px;
+  background-color: #efefef;
+}
+
+.post-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.post-bottom a {
+  text-decoration: none;
+  color: var(--color-primary);
+}
+
+.post-bottom a:hover {
+  text-decoration: underline;
+  color: var(--color-primary-alt);
+}
+
+.post-bottom i {
+  font-size: 1rem;
+  object-fit: contain;
+}
+
+.post-actions .btn {
+  background: transparent;
+  color: var(--color-error);
+}
+
+.post-actions .btn:hover {
+  color: var(--color-text-alt);
+  background: var(--color-error);
+}

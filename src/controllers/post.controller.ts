@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { body, validationResult } from 'express-validator';
-import Post from '../models/Post';
+import Post, { IPost } from '../models/Post';
 import PostModel from '../models/Post';
 
 /** Renderiza todos os posts */
@@ -63,11 +63,74 @@ export const post_new_post = [
   },
 ];
 
+/** Renderiza formulário de confirmação de remoção de post */
+export const get_remove_post = async (
+  req: Request<{ id: string }>,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const post = (await Post.findById(req.params.id).populate(
+      'author'
+    )) as IPost & {
+      author: Express.User;
+    };
+    if (post) {
+      if (post.author.username === req.user!.username) {
+        return res.render('posts/confirmRemove', {
+          post,
+        });
+      }
+      return res.render('errorPage', {
+        error: {
+          status: 403,
+          message: 'Você não tem permissões para excluir esse post',
+        },
+      });
+    }
+    return res.render('errorPage', {
+      error: {
+        status: 404,
+        message: 'O post que você está tentando apagar não existe',
+      },
+    });
+  } catch (err) {
+    return next(err);
+  }
+};
+
 /** Remove um post */
 export const post_remove_post = async (
   req: Request<{ id: string }>,
   res: Response,
   next: NextFunction
 ) => {
-  return res.send(`POST ${req.params.id} REMOVED`);
+  try {
+    const post = (await Post.findById(req.params.id).populate(
+      'author'
+    )) as IPost & {
+      author: Express.User;
+      _id: string;
+    };
+    if (post) {
+      if (post.author.username === req.user!.username) {
+        await Post.findByIdAndRemove(post._id);
+        return res.redirect('/');
+      }
+      return res.render('errorPage', {
+        error: {
+          status: 403,
+          message: 'Você não tem permissões para excluir esse post',
+        },
+      });
+    }
+    return res.render('errorPage', {
+      error: {
+        status: 404,
+        message: 'O post que você está tentando apagar não existe',
+      },
+    });
+  } catch (err) {
+    return next(err);
+  }
 };

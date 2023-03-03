@@ -28,71 +28,7 @@ main .container {
   gap: 16px;
 }
 
-.post,
-.no-posts {
-  padding: 16px;
-  background-color: var(--color-card);
-  border-radius: 8px;
-}
-
-.post {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.post h2 {
-  font-size: 1.3rem;
-}
-
-.post .author {
-  font-size: 0.9rem;
-}
-
 .no-posts {
   font-size: 1.3rem;
   text-align: center;
-}
-
-.post-content {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.post-content p {
-  padding: 8px;
-  border-radius: 8px;
-  background-color: #efefef;
-}
-
-.post-bottom {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.post-bottom a {
-  text-decoration: none;
-  color: var(--color-primary);
-}
-
-.post-bottom a:hover {
-  text-decoration: underline;
-  color: var(--color-primary-alt);
-}
-
-.post-bottom i {
-  font-size: 1rem;
-  object-fit: contain;
-}
-
-.post-actions .btn {
-  background: transparent;
-  color: var(--color-error);
-}
-
-.post-actions .btn:hover {
-  color: var(--color-text-alt);
-  background: var(--color-error);
 }

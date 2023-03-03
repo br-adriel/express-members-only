@@ -49,7 +49,7 @@
         <div class="feed">
           <% if (posts.length) { %> 
             <% posts.forEach(post => { %> 
-              <%- include('../layout/post', {post: post}) %>
+              <%- include('../layout/post', {post: post, showActions: true}) %>
             <% }) %>
           <% } else { %>
             <h3 class="no-posts">Nenhum post encontrado</h3>
