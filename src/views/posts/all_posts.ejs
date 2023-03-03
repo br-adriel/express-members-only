@@ -16,7 +16,7 @@
   <body>
     <%- include('../layout/header') %>
 
-    <main>
+    <main id="top">
       <div class="container">
         <div class="new-post">
           <h2>Novo post</h2>
@@ -57,6 +57,10 @@
           <% } %>
         </div>
       </div>
+
+      <a href="#top" title="Voltar ao topo" id="go-top" class="btn">
+        <i class="bi bi-arrow-up"></i>
+      </a>
     </main>
 
     <%- include('../layout/footer') %>

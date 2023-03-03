@@ -32,9 +32,9 @@ export const post_new_post = [
   body('content')
     .optional()
     .trim()
-    .escape()
     .isLength({ max: 500 })
-    .withMessage('O conteúdo da postagem deve ter no máxio 500 caracteres'),
+    .withMessage('O conteúdo da postagem deve ter no máximo 500 caracteres')
+    .escape(),
 
   async (req: Request, res: Response, next: NextFunction) => {
     try {
