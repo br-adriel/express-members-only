@@ -12,6 +12,7 @@ main .container {
 .profile {
   width: min(100%, 550px);
   align-items: center;
+  flex-direction: column;
   gap: 24px;
 }
 
@@ -24,8 +25,9 @@ main .container {
 
 .user-data {
   flex-direction: column;
-  align-items: flex-start;
   gap: 8px;
+  align-items: center;
+  text-align: center;
 }
 
 .user-data h2 {
@@ -46,4 +48,14 @@ main .container {
   border-radius: 50%;
   padding: 12px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+@media screen and (min-width: 768px) {
+  .profile {
+    flex-direction: row;
+  }
+
+  .user-data {
+    align-items: flex-start;
+  }
 }
