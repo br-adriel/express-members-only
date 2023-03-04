@@ -29,7 +29,7 @@ por ser uma funcionalidade crítica.
 
 Caso dejese tornar um usuário administrador você terá que editar o usuário
 diretamente no banco de dados, basta definir o campo `isAdmin` como `true`. Para
-a interface de exclusão aparecer é preciso que usuário tambem seja zip.
+a interface de exclusão aparecer é preciso que o usuário tambem seja VIP.
 
 ## Executando o projeto localmente
 
