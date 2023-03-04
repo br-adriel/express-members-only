@@ -17,7 +17,7 @@
         <div>
           <p><%= post.createdAt.toLocaleString('pt-BR') %></p>
   
-          <% if (user.username === post.author.username && showActions) { %>
+          <% if (user.isAdmin && showActions) { %>
             <div class="post-actions">
               <a href="/posts/<%= post.id %>/remove" class="btn" aria-label="Remover post" title="Remover">
                 <i class="bi bi-trash3"></i>

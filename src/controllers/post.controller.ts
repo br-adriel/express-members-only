@@ -1,7 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { body, validationResult } from 'express-validator';
-import Post, { IPost } from '../models/Post';
-import PostModel from '../models/Post';
+import { default as Post, default as PostModel, IPost } from '../models/Post';
 
 /** Renderiza todos os posts */
 export const get_posts = async (
@@ -76,7 +75,7 @@ export const get_remove_post = async (
       author: Express.User;
     };
     if (post) {
-      if (post.author.username === req.user!.username) {
+      if (req.user?.isAdmin) {
         return res.render('posts/confirmRemove', {
           post,
         });
@@ -106,28 +105,14 @@ export const post_remove_post = async (
   next: NextFunction
 ) => {
   try {
-    const post = (await Post.findById(req.params.id).populate(
-      'author'
-    )) as IPost & {
-      author: Express.User;
-      _id: string;
-    };
-    if (post) {
-      if (post.author.username === req.user!.username) {
-        await Post.findByIdAndRemove(post._id);
-        return res.redirect('/');
-      }
-      return res.render('errorPage', {
-        error: {
-          status: 403,
-          message: 'Você não tem permissões para excluir esse post',
-        },
-      });
+    if (req.user?.isAdmin) {
+      await Post.findOneAndRemove({ _id: req.params.id });
+      return res.redirect('/');
     }
     return res.render('errorPage', {
       error: {
-        status: 404,
-        message: 'O post que você está tentando apagar não existe',
+        status: 403,
+        message: 'Você não tem permissões para excluir esse post',
       },
     });
   } catch (err) {

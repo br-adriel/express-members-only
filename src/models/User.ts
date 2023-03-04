@@ -7,6 +7,7 @@ export interface IUser {
   password: string;
   profileImage?: string;
   hasMembership: boolean;
+  isAdmin: boolean;
   fullName: string;
   url: string;
 }
@@ -37,6 +38,7 @@ const UserSchema = new Schema<IUser>({
   password: { type: String, required: true },
   profileImage: { type: String, required: false },
   hasMembership: { type: Boolean, required: true, default: false },
+  isAdmin: { type: Boolean, required: true, default: false },
 });
 
 UserSchema.virtual('fullName').get(function (
