@@ -1,6 +1,12 @@
 import { NextFunction, Request, Response } from 'express';
 import { body, validationResult } from 'express-validator';
+import multer from 'multer';
+import { profilePicStorage } from '../config/multer.config';
 import User from '../models/User';
+import { unlink } from 'fs/promises';
+import { generateProfilePicPath } from '../utils/users';
+
+const upload = multer({ storage: profilePicStorage });
 
 /** Exibe perfil do usuário */
 export const get_user_profile = async (
@@ -27,7 +33,7 @@ export const get_user_profile = async (
 };
 
 /** Exibe formulário de edição do usuário */
-export const get_user_profile_edit = (
+export const get_user_profile_edit = async (
   req: Request<{ username: string }>,
   res: Response,
   next: NextFunction
@@ -40,12 +46,19 @@ export const get_user_profile_edit = (
       },
     });
   }
-  return res.render('users/editProfile', {
-    formData: {
-      firstName: req.user!.firstName,
-      lastName: req.user!.lastName,
-    },
-  });
+
+  try {
+    const user = await User.findOne({ username: req.params.username });
+    return res.render('users/editProfile', {
+      formData: {
+        firstName: req.user!.firstName,
+        lastName: req.user!.lastName,
+        profileImage: user?.profileImage,
+      },
+    });
+  } catch (error) {
+    return next(error);
+  }
 };
 
 /** Renderiza formulário para solicitar acesso VIP */
@@ -88,6 +101,8 @@ export const post_grant_user_VIP_access = [
 
 /** Salva as modificações feitas no perfil do usuário */
 export const post_user_profile_edit = [
+  upload.single('profileImage'),
+
   body('firstName')
     .trim()
     .escape()
@@ -120,17 +135,33 @@ export const post_user_profile_edit = [
 
     try {
       const errors = validationResult(req);
+      const userToUpdate = await User.findOne({
+        username: req.params.username,
+      });
+
       if (!errors.isEmpty()) {
         return res.render('users/editProfile', {
-          formData: req.body,
+          formData: { ...req.body, profileImage: userToUpdate?.profileImage },
           errors: errors.array(),
         });
+      }
+
+      let newProfilePic;
+      if (req.file) {
+        if (userToUpdate) {
+          if (userToUpdate && userToUpdate.profileImage) {
+            await unlink('public/' + userToUpdate.profileImage);
+          }
+          newProfilePic = generateProfilePicPath(req.file);
+        }
       }
 
       const newInfo = {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
+        profileImage: newProfilePic,
       };
+      if (newProfilePic) newInfo.profileImage = newProfilePic;
       await User.updateOne({ username: req.params.username }, newInfo, {});
 
       return res.redirect('/users/' + req.user?.username);

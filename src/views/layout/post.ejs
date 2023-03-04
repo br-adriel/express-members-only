@@ -10,7 +10,7 @@
     <% if (user.hasMembership) { %>
       <div class="post-bottom">
         <a href="/users/<%=post.author.username%>" class="author">
-          <i class="bi bi-person-circle"></i>
+          <img src="<%= post.author.profileImage || '/img/users/profile/default.jpg'%>" alt="">
           <%= post.author.fullName %>
         </a>
       

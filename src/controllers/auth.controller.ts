@@ -2,8 +2,13 @@ import { hash } from 'bcrypt';
 import { NextFunction, Request, Response } from 'express';
 import { body } from 'express-validator';
 import { validationResult } from 'express-validator/src/validation-result';
+import multer from 'multer';
 import passport from 'passport';
+import { profilePicStorage } from '../config/multer.config';
 import User from '../models/User';
+import { generateProfilePicPath } from '../utils/users';
+
+const upload = multer({ storage: profilePicStorage });
 
 /** Renderiza página de login */
 export const get_login = async (
@@ -39,13 +44,15 @@ export const get_logout = async (
 
 /** Faz login do usuário */
 export const post_login = passport.authenticate('local', {
-  successRedirect: '/posts',
   failureRedirect: '/login',
+  successRedirect: '/posts',
   failureMessage: 'Username ou senha incorretos',
 });
 
 /** Cria novo usuário */
 export const post_signup = [
+  upload.single('profileImage'),
+
   body('firstName')
     .trim()
     .escape()
@@ -115,9 +122,14 @@ export const post_signup = [
         username: req.body.username,
         password: hashedPassword,
       });
+
+      if (req.file) {
+        newUser.profileImage = generateProfilePicPath(req.file);
+      }
+
       await newUser.save();
 
-      return res.render('auth/login', {
+      return res.render('auth/signup', {
         messages: ['Conta criada com sucesso, você já pode realizar login'],
       });
     } catch (err) {

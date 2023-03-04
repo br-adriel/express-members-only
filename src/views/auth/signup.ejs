@@ -22,7 +22,8 @@
           <img src="/img/signup-image.jpg" alt="" />
           <div class="form-area">
             <h2>Cadastre-se e faça sua voz ser ouvida</h2>
-            <form action="" method="post">
+            <form action="" method="post" enctype="multipart/form-data">
+              <%- include('../layout/messages', messages=locals.messages ?? []) %>
               <div class="form-group">
                 <label for="firstName">Nome:</label>
                 <%-include('../layout/fieldErrors', {fieldName: 'firstName' })%>
@@ -83,6 +84,16 @@
                   minlength="8"
                   required
                 />
+              </div>
+              <div class="form-group">
+                <label for="profileImage">Imagem de perfil:</label>
+                <%-include('../layout/fieldErrors', {fieldName: 'profileImage' })%>
+                <div class="file-input">
+                  <img
+                    src="<%= locals.formData ? formData.profileImage || '/img/users/profile/default.jpg' : '/img/users/profile/default.jpg'%>"
+                    alt="" />
+                  <input type="file" name="profileImage" id="profileImage">
+                </div>
               </div>
               <button type="submit">Criar conta</button>
             </form>

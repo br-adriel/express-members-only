@@ -19,8 +19,18 @@
     <main>
       <div class="container">
         <div class="card">
-          <form action="/users/<%=user.username%>/edit" method="post">
+          <form action="/users/<%=user.username%>/edit" method="post" enctype="multipart/form-data">
             <h2>Editar perfil</h2>
+            <div class="form-group">
+              <label for="profileImage">Imagem de perfil:</label>
+              <%-include('../layout/fieldErrors', {fieldName: 'profileImage' })%>
+              <div class="file-input">
+                <img
+                  src="<%= locals.formData ? formData.profileImage || '/img/users/profile/default.jpg' : '/img/users/profile/default.jpg'%>"
+                  alt="" />
+                <input type="file" name="profileImage" id="profileImage">
+              </div>
+            </div>
             <div class="form-group">
               <label for="firstName">Nome:</label>
               <%-include('../layout/fieldErrors', {fieldName: 'firstName' })%>

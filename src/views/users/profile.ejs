@@ -19,7 +19,7 @@
     <main>
       <div class="container">
         <div class="profile card">
-          <img src="/img/users/profile/default.jpg" alt="">
+          <img src="<%=userProfile.profileImage || '/img/users/profile/default.jpg' %>" alt="">
           <div class="user-data">
             <h2>
               <%= userProfile.fullName %>

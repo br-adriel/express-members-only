@@ -15,7 +15,7 @@ export function userMustBeAuthenticated(
   next: NextFunction
 ) {
   if (req.user) return next();
-  return res.redirect('/');
+  return res.redirect('/login');
 }
 
 export function userMustBeNotAuthenticated(
@@ -24,5 +24,5 @@ export function userMustBeNotAuthenticated(
   next: NextFunction
 ) {
   if (!req.user) return next();
-  return res.redirect('/');
+  return res.redirect('/posts');
 }

@@ -56,7 +56,7 @@ main {
 
 header {
   width: 100%;
-  padding: 16px;
+  padding: 4px 16px;
   background-color: var(--color-primary);
   color: var(--color-text-alt);
   margin-bottom: 16px;
@@ -68,12 +68,12 @@ header h1 {
   font-weight: 700;
   font-size: 1.5rem;
   font-style: italic;
+  padding: 16px 0;
 }
 
 header .container {
   display: flex;
   align-items: center;
-  flex-direction: column;
   justify-content: space-between;
   gap: 32px;
 }
@@ -85,14 +85,25 @@ header a {
 
 header nav ul {
   display: flex;
-  align-items: center;
-  gap: 8px;
+}
+
+header nav img {
+  width: 24px;
+  height: 24px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+header nav li {
+  display: flex;
 }
 
 header nav a {
   padding: 8px;
   border-radius: 8px;
   transition: all 0.3s ease-out;
+  display: flex;
+  align-items: center;
 }
 
 header nav a:hover {
@@ -112,9 +123,27 @@ form .form-group {
   width: 100%;
 }
 
+form .form-group .file-input {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+form .form-group .file-input img {
+  height: 56px;
+  width: 56px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+form .form-group .file-input input {
+  flex-grow: 1;
+}
+
 input,
 select,
-textarea {
+textarea,
+.file-input {
   padding: 8px;
   border-radius: 8px;
   border: 1px solid #ccc;
@@ -122,6 +151,10 @@ textarea {
   width: 100%;
   background-color: #efefef;
   transition: all 0.3s ease-out;
+}
+
+input[type='file'] {
+  border-color: transparent;
 }
 
 input:focus,
@@ -281,9 +314,19 @@ footer .links {
   gap: 8px;
 }
 
+.post-bottom img {
+  width: 32px;
+  height: 32px;
+  object-fit: fill;
+  border-radius: 50%;
+}
+
 .post-bottom a {
   text-decoration: none;
   color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .post-bottom a:hover {
@@ -322,10 +365,4 @@ footer .links {
 .vip-banner h2 {
   font-weight: 700;
   font-size: 1.3rem;
-}
-
-@media screen and (min-width: 375px) {
-  header .container {
-    flex-direction: row;
-  }
 }
