@@ -7,6 +7,7 @@ declare global {
       PORT?: number;
       SESSION_SECRET?: string;
       VIP_CODE?: string;
+      USE_BACKSLASH_FOR_FILES_PATH?: boolean;
     }
   }
 
