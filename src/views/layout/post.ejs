@@ -7,20 +7,24 @@
   </div>
 
   <% if (user) { %>
-    <% if (user.hasMembership || user.username === post.author.username) { %>
+    <% if (user.hasMembership) { %>
       <div class="post-bottom">
         <a href="/users/<%=post.author.username%>" class="author">
           <i class="bi bi-person-circle"></i>
           <%= post.author.fullName %>
         </a>
-        
-        <% if (user.username === post.author.username && showActions) { %>
-          <div class="post-actions">
-            <a href="/posts/<%= post.id %>/remove" class="btn" aria-label="Remover post" title="Remover">
-              <i class="bi bi-trash3"></i>
-            </a>
-          </div>
-        <% } %>
+      
+        <div>
+          <p><%= post.createdAt.toLocaleString('pt-BR') %></p>
+  
+          <% if (user.username === post.author.username && showActions) { %>
+            <div class="post-actions">
+              <a href="/posts/<%= post.id %>/remove" class="btn" aria-label="Remover post" title="Remover">
+                <i class="bi bi-trash3"></i>
+              </a>
+            </div>
+          <% } %>
+        </div>
       </div>
     <% } %>
   <% } %>

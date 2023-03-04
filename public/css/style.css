@@ -252,7 +252,8 @@ footer .links {
   font-size: 1.3rem;
 }
 
-.post .author {
+.post .author,
+.post-bottom > div p {
   font-size: 0.9rem;
 }
 
@@ -272,6 +273,12 @@ footer .links {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.post-bottom > div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .post-bottom a {
