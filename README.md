@@ -4,6 +4,8 @@ Micro rede social desenvolvida com express, ejs e passportjs para praticar minha
 
 Projeto construído para uma lição do [The Odin Project](https://www.theodinproject.com).
 
+[Clique aqui para visualizar o resultado.](https://express-members-only.adrielfaria1.repl.co)
+
 ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
 ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
