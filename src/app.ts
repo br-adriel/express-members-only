@@ -20,7 +20,7 @@ import authRoutes from './routes/auth.routes';
 import postRoutes from './routes/post.routes';
 import userRoutes from './routes/user.routes';
 
-const PORT = process.env.PORT ?? 3000;
+const PORT = Number(process.env.PORT);
 
 const app = express();
 
