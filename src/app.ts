@@ -84,7 +84,7 @@ app.get('/', (req: Request, res: Response, next: NextFunction) => {
 });
 
 /* Lidando com erros */
-// app.use(ErrorHandlerMiddleware);
+app.use(ErrorHandlerMiddleware);
 
 /* Iniciando o servidor */
 app.listen(PORT, () => {
