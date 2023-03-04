@@ -4,6 +4,7 @@ main .container {
   flex-direction: column;
   gap: 32px;
   align-items: flex-start;
+  justify-content: center;
 }
 
 .new-post {
@@ -22,6 +23,7 @@ main .container {
 
 .feed {
   flex-grow: 1;
+  max-width: 550px;
   display: flex;
   flex-direction: column;
   gap: 16px;

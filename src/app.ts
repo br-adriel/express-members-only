@@ -80,12 +80,11 @@ app.use('/', authRoutes);
 app.use('/posts', postRoutes);
 app.use('/users', userRoutes);
 app.get('/', (req: Request, res: Response, next: NextFunction) => {
-  if (req.user) return res.redirect('/posts');
-  return res.redirect('/login');
+  return res.redirect('/posts');
 });
 
 /* Lidando com erros */
-app.use(ErrorHandlerMiddleware);
+// app.use(ErrorHandlerMiddleware);
 
 /* Iniciando o servidor */
 app.listen(PORT, () => {
